@@ -10,37 +10,37 @@ namespace Points.Content.Game.GameItems.components
     {
         public Script(Entity entity) : base(entity)
         {
+            entity.managerE.page.managerS.AddSript(this);
+        }
+
+        public virtual void draw(float delta)
+        {
             
         }
 
-        public void draw(float delta)
+        public virtual void enterTree()
         {
-            throw new NotImplementedException();
+
         }
 
-        public void enterTree()
+        public virtual void init()
         {
-            throw new NotImplementedException();
+
         }
 
-        public void init()
+        public virtual void loadContent()
         {
-            throw new NotImplementedException();
+
         }
 
-        public void loadContent()
+        public virtual void start()
         {
-            throw new NotImplementedException();
+
         }
 
-        public void start()
+        public virtual void update(float delta)
         {
-            throw new NotImplementedException();
-        }
 
-        public void update(float delta)
-        {
-            throw new NotImplementedException();
         }
     }
 }

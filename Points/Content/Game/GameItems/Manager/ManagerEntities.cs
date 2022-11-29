@@ -8,16 +8,18 @@ namespace Points.Content.Game.GameItems.Manager
 {
     public class ManagerEntities : MonoObject
     {
-        List<Entity> entities;
+        Dictionary<string,Entity> entities;
         public readonly Page page;
         public ManagerEntities(Page page)
         {
             this.page = page;
+            entities = new Dictionary<string, Entity>();
         }
 
-        public Entity addEntity()
+        public T addEntity<T>() where T : Entity
         {
-            Entity entity = new Entity(this);
+            T entity = (T)Activator.CreateInstance(typeof(T), this);
+            entities.Add(entity.id,entity);
             return entity;
         }
         

@@ -1,51 +1,59 @@
 ﻿using Points.Content.Game.GameItems.Manager;
 using Points.Content.Game.Interfaces;
+using Points.Content.scripts;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Points.Content.Game.GameItems.items
 {
-    public class Page : Iiterator
+    public class Page : MonoObject, Iiterator
     {
+        public readonly string id;
         public readonly ManagerEntities managerE;
-        public  readonly ManagerScripts ManagerS;
-        ManagerPages managerP;
+        public readonly ManagerScripts managerS;
+        readonly ManagerPages managerP;
+
 
         public Page(ManagerPages managerP)
         {
             managerE = new ManagerEntities(this);
+            managerS = new ManagerScripts();
             this.managerP = managerP;
+            id = "page__" + GetHashCode();
+        }
+        public virtual void init()
+        {
+            managerS.init();
+            
+        }
+        public virtual void draw(float delta)
+        {
+            managerS.draw(delta);
         }
 
-        public void draw(float delta)
+        public virtual void enterTree()
         {
-            throw new NotImplementedException();
+            managerS.enterTree();
+
         }
 
-        public void enterTree()
+        
+
+        public virtual void loadContent()
         {
-            throw new NotImplementedException();
+            managerS.loadContent();
         }
 
-        public void init()
+        public virtual void start()
         {
-            throw new NotImplementedException();
+            managerS.start();
         }
 
-        public void loadContent()
+        public virtual void update(float delta)
         {
-            throw new NotImplementedException();
-        }
-
-        public void start()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void update(float delta)
-        {
-            throw new NotImplementedException();
+            managerS.update(delta);
         }
     }
 }

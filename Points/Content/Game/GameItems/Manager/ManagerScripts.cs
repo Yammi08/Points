@@ -8,11 +8,17 @@ namespace Points.Content.Game.GameItems.Manager
 {
     public class ManagerScripts : Iiterator
     {
-        List<Script> scripts;
+        List<Script> scripts = new List<Script>();
 
+        
         public void AddSript(Script script)
         {
             scripts.Add(script);
+        }
+        // ** configurar mejor Remove scripts
+        public void RemoveSript(Script script)
+        {
+            scripts.Remove(script);
         }
         public void init()
         {
