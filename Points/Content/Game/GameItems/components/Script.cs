@@ -1,4 +1,5 @@
-﻿using Points.Content.Game.Interfaces;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Points.Content.Game.Interfaces;
 using Points.Content.scripts;
 using System;
 using System.Collections.Generic;
@@ -6,41 +7,21 @@ using System.Text;
 
 namespace Points.Content.Game.GameItems.components
 {
-    public class Script : Component,Iiterator
+    public class Script : Component, IIni, IEnterTree, IReady, IUpdate, IDraw
     {
         public Script(Entity entity) : base(entity)
         {
             entity.managerE.page.managerS.AddSript(this);
         }
 
-        public virtual void draw(float delta)
-        {
-            
-        }
+        public virtual void Draw(SpriteBatch spriteBatch){}
 
-        public virtual void enterTree()
-        {
+        public virtual void EnterTree(){}
 
-        }
+        public virtual void Initialization(){}
 
-        public virtual void init()
-        {
+        public virtual void Ready(){}
 
-        }
-
-        public virtual void loadContent()
-        {
-
-        }
-
-        public virtual void start()
-        {
-
-        }
-
-        public virtual void update(float delta)
-        {
-
-        }
+        public virtual void Update(float delta){}
     }
 }

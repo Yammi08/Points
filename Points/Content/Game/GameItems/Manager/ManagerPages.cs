@@ -32,9 +32,10 @@ namespace Points.Content.Game.GameItems.Manager
         }
         public void goToPage(Page page)
         {
-            page.init();
+            page.Initialization();
             currentPage = page;
-            page.enterTree();
+            page.EnterTree();
+            page.Ready();
         }
         public void removePage(string id)
         {

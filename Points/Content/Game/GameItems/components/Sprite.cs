@@ -17,6 +17,8 @@ namespace Points.Content.Game.GameItems.components
         public Color color;
         public Vector2 pivot;
         public Shader shader;
+        public int width => GetTexture().Width;
+        public int height => GetTexture().Height;
         public int layer
         {
             get => _layer;
@@ -37,6 +39,7 @@ namespace Points.Content.Game.GameItems.components
             shader = new Shader();
             color = Color.White;
             layer = 0;
+            entity.entityPage.managerD.addSprite(this);
         }
         /// <summary>
         /// Method <c>GetTexture</c> watch the Texture

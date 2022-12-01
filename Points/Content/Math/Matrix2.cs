@@ -74,7 +74,7 @@ namespace MonoGame.Extended
         /// <param name="other">A value or object to compare with this value or object.</param>
         bool Equals(ref T other);
 }
-[DebuggerDisplay("{DebugDisplayString,nq}")]
+    [DebuggerDisplay("{DebugDisplayString,nq}")]
     public struct Matrix2 : IEquatable<Matrix2>, IEquatableByRef<Matrix2>
     {
         public float M11; // x scale, also used for rotation
@@ -101,7 +101,7 @@ namespace MonoGame.Extended
         ///     The translation.
         /// </value>
         /// <remarks>The <see cref="Translation" /> is equal to the vector <code>(M31, M32)</code>.</remarks>
-        public Vector2 Translation => new Vector2(M31, M32);
+        public Vector2 Translation{ get => new Vector2(M31, M32);}
 
         /// <summary>
         ///     Gets the rotation angle in radians.

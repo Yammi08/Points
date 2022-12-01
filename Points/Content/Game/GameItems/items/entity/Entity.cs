@@ -1,20 +1,25 @@
-﻿using Points.Content.Game.GameItems.Manager;
+﻿using Points.Content.Game.GameItems.items;
+using Points.Content.Game.GameItems.Manager;
 using Points.Content.Game.Interfaces;
 using Points.Content.scripts.components;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 namespace Points.Content.scripts
 {
-    public class Entity : MonoObject, Iiterator
+    public class Entity : MonoObject, IIni
     {
+        // ** crear un sistema de nombres
         public readonly ManagerEntities managerE;
         public readonly ManagerScripts managerS;
         public readonly string id;
+        public readonly Page entityPage;
         public Entity? parent;
-        readonly Transform transform;
+        public string name;
+        public readonly Transform transform;
         readonly List<Component> components;
         readonly Dictionary<string,Entity> childs;
 
@@ -26,7 +31,9 @@ namespace Points.Content.scripts
             childs = new Dictionary<string, Entity>();
             managerE = manager;
             managerS = manager.page.managerS;
-            id = "entity__" + GetHashCode();
+            entityPage = manager.page;
+            
+            id = this.GetType() +"__" + GetHashCode();
         }
         #region funciones hijo
         public T getChild<T>(string id) where T : Entity => (T)childs[id];
@@ -58,34 +65,6 @@ namespace Points.Content.scripts
             return item;
         }
         #endregion
-        public void init()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void loadContent()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void start()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void enterTree()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void update(float delta)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void draw(float delta)
-        {
-            throw new NotImplementedException();
-        }
+        public virtual void Initialization() { }
     }
 }

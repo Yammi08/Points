@@ -1,4 +1,6 @@
-﻿using Points.Content.Game.GameItems.components;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Points.Content.Game.GameItems.components;
+using Points.Content.Game.GameItems.items;
 using Points.Content.Game.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -6,10 +8,14 @@ using System.Text;
 
 namespace Points.Content.Game.GameItems.Manager
 {
-    public class ManagerScripts : Iiterator
+    public class ManagerScripts : IIni, IEnterTree, IReady, IUpdate, IDraw
     {
         List<Script> scripts = new List<Script>();
-
+        Page page;
+        public ManagerScripts(Page page)
+        {
+            this.page = page;
+        }
         
         public void AddSript(Script script)
         {
@@ -20,44 +26,31 @@ namespace Points.Content.Game.GameItems.Manager
         {
             scripts.Remove(script);
         }
-        public void init()
+        public void Initialization()
         {
             foreach (var script in scripts)
-                script.init();
-        }
-        public void loadContent()
-        {
-            foreach (var script in scripts)
-                script.loadContent();
-        }
-        public void enterTree()
-        {
-            foreach (var script in scripts)
-                script.enterTree();
-        }
-        public void start()
-        {
-            foreach (var script in scripts)
-                script.start();
-        }
-        public void update(float delta)
-        {
-            foreach (var script in scripts)
-                script.update(delta);
-        }
-        public void draw(float delta)
-        {
-            foreach (var script in scripts)
-                script.draw(delta);
+                script.Initialization();
         }
 
-        
-
-        
-
-        
-        
-
-        
+        public void EnterTree()
+        {
+            foreach (var script in scripts)
+                script.EnterTree();
+        }
+        public void Ready()
+        {
+            foreach (var script in scripts)
+                script.Ready();
+        }
+        public void Update(float delta)
+        {
+            foreach (var script in scripts)
+                script.Update(delta);
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (var script in scripts)
+                script.Draw(spriteBatch);
+        }       
     }
 }

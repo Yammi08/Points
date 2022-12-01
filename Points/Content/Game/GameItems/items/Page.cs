@@ -1,4 +1,5 @@
-﻿using Points.Content.Game.GameItems.Manager;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Points.Content.Game.GameItems.Manager;
 using Points.Content.Game.Interfaces;
 using Points.Content.scripts;
 using System;
@@ -8,52 +9,49 @@ using System.Text;
 
 namespace Points.Content.Game.GameItems.items
 {
-    public class Page : MonoObject, Iiterator
+    public class Page : MonoObject, IIni, IEnterTree, IReady, IUpdate, IDraw
     {
         public readonly string id;
         public readonly ManagerEntities managerE;
         public readonly ManagerScripts managerS;
+        public readonly ManagerDraw managerD;
         readonly ManagerPages managerP;
 
 
         public Page(ManagerPages managerP)
         {
             managerE = new ManagerEntities(this);
-            managerS = new ManagerScripts();
+            managerS = new ManagerScripts(this);
+            managerD = new ManagerDraw(this);
             this.managerP = managerP;
             id = "page__" + GetHashCode();
         }
-        public virtual void init()
+        public virtual void Initialization()
         {
-            managerS.init();
+            managerE.Initialization();
+            managerS.Initialization();
             
         }
-        public virtual void draw(float delta)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
-            managerS.draw(delta);
+            managerD.Draw();
+            managerS.Draw(spriteBatch);
         }
 
-        public virtual void enterTree()
+        public virtual void EnterTree()
         {
-            managerS.enterTree();
+            managerS.EnterTree();
 
         }
 
-        
-
-        public virtual void loadContent()
+        public virtual void Ready()
         {
-            managerS.loadContent();
+            managerS.Ready();
         }
 
-        public virtual void start()
+        public virtual void Update(float delta)
         {
-            managerS.start();
-        }
-
-        public virtual void update(float delta)
-        {
-            managerS.update(delta);
+            managerS.Update(delta);
         }
     }
 }
